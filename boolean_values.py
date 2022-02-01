@@ -1,0 +1,5 @@
+technology_values = []
+work_values = []
+location_values = []
+platform_values = []
+spoken_language_values = []
