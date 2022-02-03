@@ -11,6 +11,36 @@ def test_that_tries_values_in_option_validation_function():
     assert option_is_valid(9999, range(0,10)) == False, '9999 in (0,10) doesnt return False'
     assert option_is_valid(9, range(-99,99)) == True, '9 in (-99,99) doesnt return True'
     print('    ***Test successful***')
+
+def test_that_verifies_operation_finished_validator():
+    print('test_that_verifies_operation_finished_validator')
+    input1 = 10
+    input2 = "string"
+    input3 = True
+    input4 = 3.8
+    for index, input in enumerate(['',input1,input2,input3,input4]):
+        if index > 0:
+            print(f'    input{index}: {input}')
+    assert operation_finished(input1, 10) == True, 'input1 with finish flag 10 doesnt return True'
+    assert operation_finished(input1, 9) == False, 'input1 with finish flag 9 doesnt return False'
+    assert operation_finished(input1, '10') == False, 'input1 with finish flag 10 (string) doesnt return False'
+    print('    input1: Test successful')
+    assert operation_finished(input2, 'string') == True, 'input2 with finish flag "string" doesnt return True'
+    assert operation_finished(input2, '10') == False, 'input2 with finish flag "10" doesnt return False'
+    assert operation_finished(input2, False) == False, 'input2 with finish flag False doesnt return False'
+    print('    input2: Test successful')
+    assert operation_finished(input3, True) == True, 'input3 with finish flag True doesnt return True'
+    assert operation_finished(input3, False) == False, 'input3 with finish flag False doesnt return False'
+    assert operation_finished(input3, 3.9) == False, 'input3 with finish flag 3.9 doesnt return False'
+    print('    input3: Test successful')
+    assert operation_finished(input4, 3.8) == True, 'input4 with finish flag 3.8 doesnt return True'
+    assert operation_finished(input4, 4.2) == False, 'input4 with finish flag 4.2 doesnt return False'
+    assert operation_finished(input4, 3) == False, 'input4 with finish flag 3 doesnt return False'
+    print('    input4: Test successful')
+    print('    ***Test successful***')
+
+    
+    
      
 def test_that_verify_parser_function():
     print('test_that_verify_parser_function:')
@@ -40,15 +70,19 @@ def test_that_verify_the_result_of_boolean_creator():
 def test_that_verifies_list_organizer_function():
     print('test_that_verifies_list_organizer_function')
     list = [7,5,5,3,2,1,0,4,6,7]
+    print(f'    deorganized list:{list}')
     new_list = list_organizer(list)
     assert new_list == [0,1,2,3,4,5,6,7], f'{new_list} doesnt match'
-    print('    ' + f'{new_list}')
+    print('    organized list:' + f'{new_list}')
     print('    ***Test Successful***')
+
+
 
 
 
 if __name__=='__main__':
     test_that_tries_values_in_option_validation_function()
+    test_that_verifies_operation_finished_validator()
     test_that_verify_parser_function()
     test_that_verify_the_result_of_boolean_creator()
     test_that_verifies_list_organizer_function()
