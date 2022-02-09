@@ -44,24 +44,25 @@ def test_that_verifies_operation_finished_validator():
      
 def test_that_verify_parser_function():
     print('test_that_verify_parser_function:')
-    string = item_parser([2,1,0],['"python"','"regex"', '"git"'])
-    string2 = item_parser([1,0],['"python"','"regex"', '"git"'])
-    string3 = item_parser([1,2,9],['"python"','"regex"', '"git"'])
-    assert string == '"git" OR "regex" OR "python"', f'{string} doesnt match'
+    string = item_parser([2,1,0],[['"python"', '"paithon"'],['"regex"', '"reg ex"'], ['"git"', '"GIT"']])
+    string2 = item_parser([1,0],[['"python"', '"paithon"'],['"regex"', '"reg ex"'], ['"git"', '"GIT"']])
+    string3 = item_parser([1,2,9],[['"python"', '"paithon"'],['"regex"', '"reg ex"'], ['"git"', '"GIT"']])
+    assert string == '"git" OR "GIT" OR "regex" OR "reg ex" OR "python" OR "paithon"', f'{string} doesnt match'
     print("    " + string)
-    assert string2 == '"regex" OR "python"', f'{string2} doesnt match'
+    assert string2 == '"regex" OR "reg ex" OR "python" OR "paithon"', f'{string2} doesnt match'
     print("    " + string2)
-    assert string3 == '"regex" OR "git"', f'{string3} doesnt match'
+    assert string3 == '"regex" OR "reg ex" OR "git" OR "GIT"', f'{string3} doesnt match'
     print("    " + string3)
     print('    ***Test successful***')
 
 def test_that_verify_the_result_of_boolean_creator():
     print('test_that_verify_the_result_of_boolean_creator:')
     list_of_demands = [[0,1], [2,3,1], [4,2,3]]
-    list_of_values =[['"fabia" OR "gunther"', '"Mathias" OR "Hunter"', '"Gabriel" OR "Francesca"'],
-                    ['"134" OR "564"', '"675" OR "990"', '"009" OR "921"', '"000" OR "126"', '"112" OR "674"'],
-                    ['"a" OR "b"', '"c" OR "d"', '"e" OR "f"', '"g" OR "h"', '"i" OR "j"']]   
+    list_of_values =[[['"fabia"', '"gunther"'], ['"Mathias"','"Hunter"'], ['"Gabriel"','"Francesca"']],
+                    [['"134"','"564"'], ['"675"','"990"'], ['"009"','"921"'], ['"000"','"126"'], ['"112"','"674"']],
+                    [['"a"','"b"'], ['"c"','"d"'], ['"e"','"f"'], ['"g"','"h"'], ['"i"','"j"']]]   
     boolean_string = boolean_creator(list_of_demands, list_of_values)
+    print("    Boolean string = " + boolean_string)
     assert boolean_string == '''("fabia" OR "gunther" OR "Mathias" OR "Hunter") AND ("009" OR "921" OR "000" OR "126" OR "675" OR "990") AND ("i" OR "j" OR "e" OR "f" OR "g" OR "h")'''
 
     print("    Boolean string = " + boolean_string)

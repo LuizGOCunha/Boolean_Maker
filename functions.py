@@ -30,8 +30,9 @@ def item_parser(item_list, string_value_list):
     for index, item in enumerate(item_list):
         for index_V, value in enumerate(string_value_list):
             if item == index_V:
-                parsed_string += string_value_list[index_V]
-                parsed_string += " OR "
+                for word in value:
+                    parsed_string += word
+                    parsed_string += " OR "
     parsed_string = parsed_string[:-4]
     return parsed_string
         

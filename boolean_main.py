@@ -23,19 +23,19 @@ language_options = ['English', 'Spanish', 'Portuguese']
 # In the end we will have a Boolean string search created on our terms!
 
 # Which technologies we will be searching
-technology_options = []
+technology_options = ["Python", "Javascript", "Cloud", "PHP"]
 
 # What work will be made with this technology
-work_options = []
+work_options = ["Programmer", "DevOps"]
 
 # In what location should we search our candidates
-location_options = []
+location_options = ["Latin America", "Brazil", "LatAm (No Brazil, no Mexico)"]
 
 #In what platform we should search our candidates
-platform_options = []
+platform_options = ["Linkedin"]
 
 # What language should our candidates speak?
-spoken_language_options = []
+spoken_language_options = ["English"]
 
 #       *********Remember that values and options should have respective orders!*********
 
