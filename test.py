@@ -63,7 +63,7 @@ def test_that_verify_the_result_of_boolean_creator():
                     [['"a"','"b"'], ['"c"','"d"'], ['"e"','"f"'], ['"g"','"h"'], ['"i"','"j"']]]   
     boolean_string = boolean_creator(list_of_demands, list_of_values)
     print("    Boolean string = " + boolean_string)
-    assert boolean_string == '''("fabia" OR "gunther" OR "Mathias" OR "Hunter") AND ("009" OR "921" OR "000" OR "126" OR "675" OR "990") AND ("i" OR "j" OR "e" OR "f" OR "g" OR "h")'''
+    assert boolean_string == '''("fabia" OR "gunther") AND ("Mathias" OR "Hunter") AND ("009" OR "921" OR "000" OR "126" OR "675" OR "990") AND ("i" OR "j" OR "e" OR "f" OR "g" OR "h")'''
 
     print("    Boolean string = " + boolean_string)
     print("    ***Test successful***")

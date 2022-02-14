@@ -23,7 +23,7 @@ def list_creator_prompt(segment, item_list):
             print('Only valid numbers, please.')
 
 
-def item_parser(item_list, string_value_list):
+def item_parser(item_list, string_value_list, mandatory=False):
     """Checks a number in a list of numbers, if it is equal to the index
         of a given list of values, adds these values to the return string"""
     parsed_string = ""
@@ -33,7 +33,16 @@ def item_parser(item_list, string_value_list):
                 for word in value:
                     parsed_string += word
                     parsed_string += " OR "
-    parsed_string = parsed_string[:-4]
+                parsed_string = parsed_string[:-4]
+                if mandatory:
+                    parsed_string += ") AND ("
+                if not mandatory:
+                    parsed_string += " OR "
+                    
+    if mandatory:
+        parsed_string = parsed_string[:-7] 
+    if not mandatory:
+        parsed_string = parsed_string[:-4]
     return parsed_string
         
 def list_organizer(list_v):
@@ -51,9 +60,15 @@ def boolean_creator(list_of_demands, list_of_values):
     """This function looks into the demands of the user, then looks for it in the list of
     values, then starts creating a boolean search string based on the demands and values given"""
     boolean_string = "("
+    # Gambiarra o nome disso \/
+    technology_flag = 0
     for demands, values in zip(list_of_demands,list_of_values):
-        item_string = item_parser(demands, values)
+        if technology_flag == 0:
+            item_string = item_parser(demands, values, mandatory = True)
+        else: 
+            item_string = item_parser(demands, values)
         boolean_string += item_string + ') AND ('
+        technology_flag += 1
     boolean_string = boolean_string[:-6]
     return boolean_string
    

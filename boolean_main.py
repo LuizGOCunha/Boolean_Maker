@@ -23,7 +23,7 @@ language_options = ['English', 'Spanish', 'Portuguese']
 # In the end we will have a Boolean string search created on our terms!
 
 # Which technologies we will be searching
-technology_options = ["Python", "Javascript", "Cloud", "PHP"]
+technology_options = ["Python", "Javascript", "Cloud", "PHP", "React","React Native", "Node.js"]
 
 # What work will be made with this technology
 work_options = ["Programmer", "DevOps"]
